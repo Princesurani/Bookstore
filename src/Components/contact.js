@@ -8,6 +8,7 @@ export default function Contact() {
       <Button variant="contained" onClick={() => window.location = 'mailto:suraniprince007@gmail.com'}>
         E-mail us
         </Button>
+        <p>feel free t ask anything</p>
         
     </section>
   );
