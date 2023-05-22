@@ -1,18 +1,31 @@
 
-.p{
-  font-size: 19px;
-  font-family: Cambria;
+.navtext{
+  font-size: 20px;
+  
+  align-items: center;
 }
 
 .footer{
+  height: 40px;
   color: white;
   font-family: Cambria;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  bottom: 0;
+  width: 100%;
+  position:fixed;
+  background-color: #333;
+  margin: 0;
+  text-align: center;
 }
+
+
 
 ul {
   list-style-type: none;
   margin: 0;
-
+  padding-right: 30px;
   overflow: hidden;
   background-color: #333;
 }
@@ -25,7 +38,7 @@ li a {
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
+  padding: 16px 16px;
   text-decoration: none;
 }
 
@@ -38,4 +51,8 @@ li a:hover {
   align-items: center;
 
   margin-top: 1cm;
+}
+
+.icons{
+  float: right;
 }

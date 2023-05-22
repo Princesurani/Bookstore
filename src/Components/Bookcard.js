@@ -7,14 +7,16 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import IconButton from '@material-ui/core/IconButton';
+import ShareIcon from '@material-ui/icons/Share';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
   },
   media: {
-    height: 500,
+    height: 400,
     position:'relative'
   },
 });
@@ -23,9 +25,9 @@ export default function Bookcard(props) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.root} >
       <CardActionArea>
-        <CardMedia 
+        <CardMedia  sx={{ width: 'auto' }}
           className={classes.media}
           image={props.path}
           title="Contemplative Reptile"
@@ -42,9 +44,16 @@ export default function Bookcard(props) {
       </CardActionArea>
       <CardActions>
         <Button  variant='contained' size="medium" color="primary">
-          Buy
+          Add to Cart
         </Button>
+        <IconButton color="default"  aria-label="add to favorites">
+          <FavoriteIcon />
+        </IconButton>
+        <IconButton aria-label="share">
+          <ShareIcon />
+        </IconButton>
       </CardActions>
     </Card>
+    
   );
 }

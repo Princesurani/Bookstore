@@ -21,7 +21,6 @@ const Books = () => {
                 
             </Grid>
         </div>
-        <br/><br/><br/><br/><br/>
         </>
     )
 };

@@ -10,12 +10,10 @@ root.render(
   <React.StrictMode>
     <div align="center">
       <App />
-      
 
-      <div class="foot">
-          <Footer/>
-      </div>
-     
+
+      <Footer />
+
     </div>
   </React.StrictMode>
 );
