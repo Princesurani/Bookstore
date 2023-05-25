@@ -9,34 +9,23 @@ import authService from '../../sevice/authsevice';
 import {  NavLink, } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
-  firstName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  lastName: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
+  
   email: Yup.string()
     .email("Invalid email")
     .required("Required"),
-  roleId: Yup.number().required('Role is required'),
 
   password: Yup.string()
-    .min(8, "Password is too short - should be 8 chars minimum.")
+    .min(4, "Password is too short - should be 8 chars minimum.")
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
     .required("No Password provided."),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password'), null], 'Password does not match')
+  
 });
 
 const initialValues = {
-  firstName: '',
-  lastName: '',
+  
   email: '',
   roleId: '',
-  password: '',
-  confirmPassword: '',
+ 
 };
 
 const FormContainer = styled('div')`
@@ -76,13 +65,16 @@ const Login = () => {
   const handleSubmit = (data) => {
 
     console.log(data);
+    delete data.firstName;
+    delete data.lastName;
+    delete data.roleId;
     delete data.id;
     delete data.confirmPassword;
-    authService.create(data)
+    authService.login(data)
       .then((res) => {
         // navigate("/login");
         console.log("Registered!!");
-        toast.success("Successfully Registered");
+        toast.success("Successfully login");
       })
       .catch((error) => {
         toast.error();

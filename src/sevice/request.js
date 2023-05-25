@@ -102,7 +102,7 @@ request.interceptors.response.use(
 
         }
          else {
-            toast.success("Account Created")
+            
             return Promise.resolve(response.data.result);
 
         }

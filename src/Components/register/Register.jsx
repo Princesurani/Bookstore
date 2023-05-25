@@ -83,7 +83,7 @@ const Register = () => {
     delete data.confirmPassword;
     authService.create(data)
       .then((res) => {
-        toast.success("Account created");
+        toast.success("Account Created")
         navigate('/login')
       })
       .catch((error) => {
