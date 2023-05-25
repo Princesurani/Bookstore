@@ -7,7 +7,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 const Nav = () => {
 
-
+    
     return (
         <>
             <nav>
@@ -27,12 +27,12 @@ const Nav = () => {
                         <div class="icons">
                             <li style={{float:"left"}}>
                                 <NavLink to="/book">
-                                    <AddShoppingCartIcon style={{ color: "white" }} />
+                                    <AddShoppingCartIcon  />
                                 </NavLink>
                             </li>
                             <li  style={{float:"left"}}>
                                 <NavLink to="/register">
-                                    <AccountCircleIcon style={{ color: "white" }} />
+                                    <AccountCircleIcon  />
                                 </NavLink>
 
                             </li>

@@ -58,7 +58,8 @@ const FieldWrapper = styled('div')`
 const RegisterButton = styled(Button)`
   align-self: flex-start;
   margin-top: 2rem;
-  background-color: red;
+  color:white;
+  background-color: black;
 `;
 
 const Login = () => {
@@ -87,13 +88,12 @@ const Login = () => {
       <Breadcrumbs aria-label="breadcrumb">
       <NavLink style={{ color: 'black' }} to="/home" >home</NavLink>
 
-        
-        <Typography color="textPrimary">Login here</Typography>
+        <Typography color="textPrimary">Login </Typography>
       </Breadcrumbs>
 
       <FormContainer style={{ margin: '2rem' }}>
         <Typography component="h1" variant="h4" align="center" marginY='4rem'>
-          Sign in
+          <u>Sign in to your Account</u>
         </Typography>
 
         <Formik
@@ -104,7 +104,7 @@ const Login = () => {
           {({ errors, touched }) => (
             <Form>
               
-              <SectionTitle>Login Information</SectionTitle>
+              <SectionTitle>Login info</SectionTitle>
 
               <FieldWrapper>
                 <Field

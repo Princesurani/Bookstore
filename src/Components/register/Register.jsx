@@ -70,7 +70,8 @@ const FieldWrapper = styled('div')`
 const RegisterButton = styled(Button)`
   align-self: flex-start;
   margin-top: 2rem;
-  background-color: red;
+  color:white;
+  background-color: black;
 `;
 
 const Register = () => {
@@ -94,18 +95,16 @@ const Register = () => {
   return (
     <Container component="main">
 
-      <Breadcrumbs aria-label="breadcrumb">
-      <NavLink style={{ color: 'black' }} to="/home" >home</NavLink>
 
-        
+      <Breadcrumbs aria-label="breadcrumb">
+      <NavLink style={{ color: 'black' ,}} to="/home" >home</NavLink>
+
         <Typography color="textPrimary">Create an account</Typography>
       </Breadcrumbs>
-
       <FormContainer style={{ margin: '2rem' }}>
-        <Typography component="h1" variant="h4" align="center" marginY='4rem'>
-          Create an Acoount
+      <Typography component="h1" variant="h4" align="center" marginY='4rem'>
+          <u>Create new Account</u>
         </Typography>
-
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -203,6 +202,8 @@ const Register = () => {
               <RegisterButton type="submit" variant="contained" >
                 Register
               </RegisterButton>
+              <SectionTitle></SectionTitle>
+              <NavLink to="/login" style={{color:"black"}}>Already an user? Login here</NavLink>
             </Form>
           )}
         </Formik>
