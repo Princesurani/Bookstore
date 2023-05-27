@@ -103,7 +103,7 @@ const Register = () => {
       </Breadcrumbs>
       <FormContainer style={{ margin: '2rem' }}>
       <Typography component="h1" variant="h4" align="center" marginY='4rem'>
-          <u>Create new Account</u>
+          <u>Create newpojhg Account</u>
         </Typography>
         <Formik
           initialValues={initialValues}

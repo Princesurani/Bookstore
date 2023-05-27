@@ -140,6 +140,8 @@ const Login = () => {
               <RegisterButton type="submit" variant="contained" >
                 login
               </RegisterButton>
+              <SectionTitle></SectionTitle>
+              <NavLink to="/register" style={{color:"black"}}>New user? create Account here</NavLink>
             </Form>
           )}
         </Formik>

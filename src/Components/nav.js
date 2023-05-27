@@ -1,8 +1,10 @@
-import { Outlet, NavLink } from "react-router-dom";
-import './nav.css';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import HomeIcon from '@material-ui/icons/Home';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Home from "./Home.js";
+import Contact from "./Contact.js";
+import Books from "./Books.js";
+import Register from "./register/Register";
+import {Routes, Route } from "react-router-dom";
+import Login from "./login/login";
+
 
 
 const Nav = () => {
@@ -10,39 +12,15 @@ const Nav = () => {
     
     return (
         <>
-            <nav>
-                <ul class="navul">
-                    <div class="navtext">
-                        <li  style={{float:"left"}} >
-                            <NavLink to="">
-                                <HomeIcon />
-                            </NavLink>
-                        </li>
-                        <li style={{float:"left"}}>
-                            <NavLink to="/book" >Books</NavLink>
-                        </li>
-                        <li style={{float:"left"}}>
-                            <NavLink to="/contact">Contact</NavLink>
-                        </li>
-                        <div class="icons">
-                            <li style={{float:"left"}}>
-                                <NavLink to="/book">
-                                    <AddShoppingCartIcon  />
-                                </NavLink>
-                            </li>
-                            <li  style={{float:"left"}}>
-                                <NavLink to="/register">
-                                    <AccountCircleIcon  />
-                                </NavLink>
+            <Routes>
+              <Route path="" element={<Home />} />
+              <Route path="home" element={<Home />} />
 
-                            </li>
-                        </div>
-                    </div>
-                </ul>
-
-            </nav>
-
-            <Outlet />
+              <Route path="book" element={<Books />} />
+              <Route path="contact" element={<Contact />} />
+              <Route path="register" element={<Register />}/>
+              <Route path="login" element={<Login />}/>
+          </Routes>
         </>
     )
 };

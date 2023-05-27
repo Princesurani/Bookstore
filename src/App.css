@@ -1,21 +1,6 @@
 
 
 
-.footer{
-  height: 40px;
-  color: white;
-  font-family: Cambria;
-  align-items: center;
-  align-content: center;
-  align-self: center;
-  bottom: 0;
-  width: 100%;
-  position:fixed;
-  background-color: #333;
-  margin: 0;
-  text-align: center;
-}
-
 .container{
   align-items: center;
 

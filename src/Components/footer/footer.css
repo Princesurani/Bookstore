@@ -1,0 +1,13 @@
+.footer {
+
+    height: 40px;
+    color: black;
+    font-family: Cambria;
+    
+    bottom: 0;
+    width: 100%;
+    position: relative;
+    background-color: rgb(193, 193, 195);
+    margin: 0;
+    text-align: center;
+}
