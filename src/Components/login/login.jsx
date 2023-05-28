@@ -5,7 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import authService from '../../sevice/authsevice';
+import authService from '../../service/authsevice';
 import {  NavLink, } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({

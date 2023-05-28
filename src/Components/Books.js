@@ -1,12 +1,18 @@
-import "../App.css";
 import Grid from '@material-ui/core/Grid';
 import Bookcard from "./Bookcard";
+
+import styled from "@mui/system/styled";
+
+const Bookdiv = styled("div")`
+    margin:1cm
+    `;
+
 
 const Books = () => {
 
     return (
         <>
-        <div class="container">
+        <Bookdiv >
             <Grid container>
                 
                 <Grid item xs={4}>
@@ -20,7 +26,7 @@ const Books = () => {
                 </Grid>
                 
             </Grid>
-        </div>
+        </Bookdiv>
         </>
     )
 };
