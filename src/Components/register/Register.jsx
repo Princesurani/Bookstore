@@ -7,7 +7,7 @@ import CustomSelect from './Costomselect';
 import { toast } from 'react-toastify';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import authService from '../../service/authsevice';
-import {  useNavigate, NavLink, } from 'react-router-dom';
+import { useNavigate, NavLink, } from 'react-router-dom';
 
 
 
@@ -76,6 +76,11 @@ const RegisterButton = styled(Button)`
   background-color: black;
 `;
 
+const Regdiv = styled("div")`
+    margin-bottom: 2cm;
+
+    `;
+
 const Register = () => {
   const navigate = useNavigate();
 
@@ -95,122 +100,124 @@ const Register = () => {
   };
 
   return (
-    <Container component="main">
+    <Regdiv>
+      <Container component="main">
 
 
-      <Breadcrumbs aria-label="breadcrumb">
-      <NavLink style={{ color: 'black' ,}} to="/home" >home</NavLink>
+        <Breadcrumbs aria-label="breadcrumb">
+          <NavLink style={{ color: 'black', }} to="/home" >home</NavLink>
 
-        <Typography color="textPrimary">Create an account</Typography>
-      </Breadcrumbs>
-      <FormContainer style={{ margin: '2rem' }}>
-      <Typography component="h1" variant="h4" align="center" marginY='4rem'>
-          <u>Create newpojhg Account</u>
-        </Typography>
-        <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({ errors, touched }) => (
-            <Form>
-              <SectionTitle>Personal Information</SectionTitle>
-              <FieldWrapper>
-                <Field
-                  as={TextField}
-                  variant="outlined"
-                  fullWidth
-                  id="firstName"
-                  name="firstName"
-                  label="First Name"
-                  // value={values.firstName}
-                  error={touched.firstName && !!errors.firstName}
-                  helperText={touched.firstName && errors.firstName}
-                />
-                <Field
-                  as={TextField}
-                  variant="outlined"
-                  fullWidth
-                  id="lastName"
-                  name="lastName"
-                  label="Last Name"
-                  // value={values.lastName}
+          <Typography color="textPrimary">Create an account</Typography>
+        </Breadcrumbs>
+        <FormContainer style={{ margin: '2rem' }}>
+          <Typography component="h1" variant="h4" align="center" marginY='4rem'>
+            <u>Create newpojhg Account</u>
+          </Typography>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {({ errors, touched }) => (
+              <Form>
+                <SectionTitle>Personal Information</SectionTitle>
+                <FieldWrapper>
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    fullWidth
+                    id="firstName"
+                    name="firstName"
+                    label="First Name"
+                    // value={values.firstName}
+                    error={touched.firstName && !!errors.firstName}
+                    helperText={touched.firstName && errors.firstName}
+                  />
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    fullWidth
+                    id="lastName"
+                    name="lastName"
+                    label="Last Name"
+                    // value={values.lastName}
 
-                  error={touched.lastName && !!errors.lastName}
-                  helperText={touched.lastName && errors.lastName}
-                />
+                    error={touched.lastName && !!errors.lastName}
+                    helperText={touched.lastName && errors.lastName}
+                  />
 
-              </FieldWrapper>
+                </FieldWrapper>
 
-              <SectionTitle>Login Information</SectionTitle>
+                <SectionTitle>Login Information</SectionTitle>
 
-              <FieldWrapper>
-                <Field
-                  as={TextField}
-                  variant="outlined"
-                  fullWidth
-                  id="email"
-                  name="email"
-                  label="Email Address"
-                  // value={values.email}
+                <FieldWrapper>
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    fullWidth
+                    id="email"
+                    name="email"
+                    label="Email Address"
+                    // value={values.email}
 
-                  error={touched.email && !!errors.email}
-                  helperText={touched.email && errors.email}
-                />
-                <Field
-                  component={CustomSelect}
-                  variant="outlined"
-                  fullWidth
-                  id="roleId"
-                  name="roleId"
-                  label="Role"
-                  error={errors.role && touched.role}
-                  helperText={errors.role && touched.role && errors.role}
-                >
-                  <MenuItem value="1">Buyer</MenuItem>
-                  <MenuItem value="2">Seller</MenuItem>
-                </Field>
-              </FieldWrapper>
+                    error={touched.email && !!errors.email}
+                    helperText={touched.email && errors.email}
+                  />
+                  <Field
+                    component={CustomSelect}
+                    variant="outlined"
+                    fullWidth
+                    id="roleId"
+                    name="roleId"
+                    label="Role"
+                    error={errors.role && touched.role}
+                    helperText={errors.role && touched.role && errors.role}
+                  >
+                    <MenuItem value="1">Buyer</MenuItem>
+                    <MenuItem value="2">Seller</MenuItem>
+                  </Field>
+                </FieldWrapper>
 
-              <FieldWrapper>
-                <Field
-                  as={TextField}
-                  variant="outlined"
-                  fullWidth
-                  id="password"
-                  name="password"
-                  type="password"
-                  label="Password"
-                  // value={values.password}
+                <FieldWrapper>
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    fullWidth
+                    id="password"
+                    name="password"
+                    type="password"
+                    label="Password"
+                    // value={values.password}
 
-                  error={touched.password && !!errors.password}
-                  helperText={touched.password && errors.password}
-                />
-                <Field
-                  as={TextField}
-                  variant="outlined"
-                  fullWidth
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  label="Confirm Password"
-                  // value={values.confirmPassword}
+                    error={touched.password && !!errors.password}
+                    helperText={touched.password && errors.password}
+                  />
+                  <Field
+                    as={TextField}
+                    variant="outlined"
+                    fullWidth
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    type="password"
+                    label="Confirm Password"
+                    // value={values.confirmPassword}
 
-                  error={touched.confirmPassword && !!errors.confirmPassword}
-                  helperText={touched.confirmPassword && errors.confirmPassword}
-                />
-              </FieldWrapper>
+                    error={touched.confirmPassword && !!errors.confirmPassword}
+                    helperText={touched.confirmPassword && errors.confirmPassword}
+                  />
+                </FieldWrapper>
 
-              <RegisterButton type="submit" variant="contained" >
-                Register
-              </RegisterButton>
-              <SectionTitle></SectionTitle>
-              <NavLink to="/login" style={{color:"black"}}>Already an user? Login here</NavLink>
-            </Form>
-          )}
-        </Formik>
-      </FormContainer>
-    </Container>
+                <RegisterButton type="submit" variant="contained" >
+                  Register
+                </RegisterButton>
+                <SectionTitle></SectionTitle>
+                <NavLink to="/login" style={{ color: "black" }}>Already an user? Login here</NavLink>
+              </Form>
+            )}
+          </Formik>
+        </FormContainer>
+      </Container>
+    </Regdiv>
   );
 };
 

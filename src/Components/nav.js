@@ -5,11 +5,7 @@ import Register from "./register/Register";
 import {Routes, Route } from "react-router-dom";
 import Login from "./login/login";
 
-
-
-const Nav = () => {
-
-    
+const Nav = () => {    
     return (
         <>
             <Routes>
