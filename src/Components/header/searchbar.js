@@ -12,17 +12,19 @@ const SearchForm = styled("form")`
   padding: 3px;
   padding-left: 5px;
   padding-right: 5px;
-
-
   width: auto;
 
   & input {
     border: none;
     outline: none;
-    flex-grow: 1;
-    padding: 8px;
+    padding: 10px;
+    width:15cm;
     font-size: 16px;
   }
+`;
+const Searchcenter = styled("form")`
+  margin:auto;
+
 `;
 
 const SearchButton = styled(IconButton)`
@@ -47,12 +49,12 @@ export default function Searchb() {
     e.preventDefault();
     try {
       bookService.searchBook(query)
-      .then((res) => {
-        // navigate("/login");
-        console.log(res);
-        setBooks(res);
-      })
-      
+        .then((res) => {
+          // navigate("/login");
+          console.log(res);
+          setBooks(res);
+        })
+
     } catch (error) {
       console.log(error);
     }
@@ -60,18 +62,20 @@ export default function Searchb() {
   return (
     <>
       <SearchForm name="searchForm" onSubmit={handleSearch} >
-            <input
-              type="text"
-              placeholder="Search for a book  iedsibkb"
-              value={query}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-            <SearchButton type="submit" color="inherit" aria-label="search">
-              <SearchIcon />
-            </SearchButton>
-          </SearchForm>
+        <Searchcenter>
+          <input
+            type="text"
+            placeholder="Search for a book  "
+            value={query}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <SearchButton type="submit" color="inherit" aria-label="search">
+            <SearchIcon />
+          </SearchButton>
+        </Searchcenter>
+      </SearchForm>
       <span>
-      
+
         {books.map((book) => (
           <li key={book.id}>{book.name}</li>
         ))}

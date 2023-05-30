@@ -86,7 +86,7 @@ request.interceptors.response.use(
 
         const { data } = response;
 
-        console.log("responseeee,", response);
+        // console.log("responseeee,", response);
 
         removeRequest(response.config.url);
 

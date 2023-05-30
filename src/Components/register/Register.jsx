@@ -69,6 +69,8 @@ const FieldWrapper = styled('div')`
   margin-bottom: 2rem;
 `;
 
+
+
 const RegisterButton = styled(Button)`
   align-self: flex-start;
   margin-top: 2rem;
@@ -103,15 +105,14 @@ const Register = () => {
     <Regdiv>
       <Container component="main">
 
-
         <Breadcrumbs aria-label="breadcrumb">
           <NavLink style={{ color: 'black', }} to="/home" >home</NavLink>
-
           <Typography color="textPrimary">Create an account</Typography>
         </Breadcrumbs>
+       
         <FormContainer style={{ margin: '2rem' }}>
           <Typography component="h1" variant="h4" align="center" marginY='4rem'>
-            <u>Create newpojhg Account</u>
+            <u>Create new Account</u>
           </Typography>
           <Formik
             initialValues={initialValues}

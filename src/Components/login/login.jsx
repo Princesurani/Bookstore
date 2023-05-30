@@ -6,7 +6,10 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import authService from '../../service/authsevice';
-import {  NavLink, } from 'react-router-dom';
+import {  NavLink, useNavigate, } from 'react-router-dom';
+import { useAuthContext } from '../contexts/authcontext';
+import { RoutePaths } from '../utils/enum';
+
 
 const validationSchema = Yup.object().shape({
   
@@ -63,9 +66,12 @@ const RegisterButton = styled(Button)`
 `;
 
 const Login = () => {
+  const authContext = useAuthContext();
+  const navigate =useNavigate();
+
   const handleSubmit = (data) => {
 
-    console.log(data);
+    // console.log(data);
     delete data.firstName;
     delete data.lastName;
     delete data.roleId;
@@ -74,8 +80,10 @@ const Login = () => {
     authService.login(data)
       .then((res) => {
         // navigate("/login");
-        console.log("Registered!!");
+        // console.log("Registered!!");
         toast.success("Successfully login");
+        authContext.setUser(res);
+        navigate(RoutePaths.home);
       })
       .catch((error) => {
         toast.error();

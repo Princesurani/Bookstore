@@ -3,7 +3,8 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import styled from "@mui/system/styled";
-
+import { useAuthContext } from "../contexts/authcontext";
+import { RoutePaths } from "../utils/enum";
 
 
 const Navull = styled("ul")`
@@ -38,6 +39,8 @@ const Navli = styled("li")`
 
 
 const Header = () => {
+    const authContext = useAuthContext();
+
 
     return (
 
@@ -49,25 +52,35 @@ const Header = () => {
                             <HomeIcon />
                         </NavLink>
                     </Navli>
-                    <div class="icons">
-                        <Navli  >
-                            <NavLink to="/register">
-                                <AccountCircleIcon />
-                            </NavLink>
 
-                        </Navli>
+                    {!authContext.user.id ? (
                         <Navli >
-                            <NavLink to="/book">
-                                <AddShoppingCartIcon />
-                            </NavLink>
+                            <NavLink to={RoutePaths.login} >login</NavLink>
                         </Navli>
-                    </div>
-                    <Navli >
-                        <NavLink to="/contact">Contact</NavLink>
-                    </Navli>
-                    <Navli >
-                        <NavLink to="/book" >Books</NavLink>
-                    </Navli>
+                    ) :
+                        <div>
+
+                            <div class="icons">
+                                <Navli  >
+                                    <NavLink onClick={authContext.signOut} to={RoutePaths.login}>
+                                        <AccountCircleIcon />
+                                    </NavLink>
+
+                                </Navli>
+                                <Navli >
+                                    <NavLink to={RoutePaths.book}>
+                                        <AddShoppingCartIcon />
+                                    </NavLink>
+                                </Navli>
+                            </div>
+                            <Navli >
+                                <NavLink to={RoutePaths.contact}>Contact</NavLink>
+                            </Navli>
+                            <Navli >
+                                <NavLink to={RoutePaths.book} >Books</NavLink>
+                            </Navli>
+                        </div>
+                    }
 
                 </Navull>
 

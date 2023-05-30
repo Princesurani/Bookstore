@@ -4,18 +4,19 @@ import Books from "./Books.js";
 import Register from "./register/Register";
 import {Routes, Route } from "react-router-dom";
 import Login from "./login/login";
+import { RoutePaths } from "./utils/enum.js";
 
 const Nav = () => {    
     return (
         <>
             <Routes>
               <Route path="" element={<Home />} />
-              <Route path="home" element={<Home />} />
+              <Route path={RoutePaths.home} element={<Home />} />
 
-              <Route path="book" element={<Books />} />
-              <Route path="contact" element={<Contact />} />
-              <Route path="register" element={<Register />}/>
-              <Route path="login" element={<Login />}/>
+              <Route path={RoutePaths.book} element={<Books />} />
+              <Route path={RoutePaths.contact} element={<Contact />} />
+              <Route path={RoutePaths.register} element={<Register />}/>
+              <Route path={RoutePaths.login} element={<Login />}/>
           </Routes>
         </>
     )
