@@ -55,15 +55,17 @@ const BookSub = styled("span")`
   font-size: 0.9rem;
 `;
 
-
-
 const Coldivleft = styled("div")`
 float: left;
-
 `;
-const Coldivright = styled("div")`
-float: right;
 
+const Coldivright = styled("div")`
+    float: right;
+
+    & input{
+        width:12cm;
+
+    }
 `;
 
 const Title = styled("span")`
@@ -71,12 +73,16 @@ const Title = styled("span")`
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
 `;
-const Pagewrapper = styled("span")`
-    position: relative;
-    background-color: grey;
-    margin: 0;
-    text-align: center;
+const Pagewrapper = styled("div")`
+    & ul{
+        float: center;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        padding:0.3cm;
+    }
 `;
+
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -86,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
-    
+
 }));
 
 const defaultFilter = {
@@ -169,7 +175,7 @@ const BookGrid = () => {
     };
 
 
-    
+
 
     return (
 
@@ -183,7 +189,7 @@ const BookGrid = () => {
                         </Coldivleft>
                         <Coldivright>
                             <TextField
-                               
+
                                 placeholder="Search.."
                                 variant="outlined"
                                 inputProps={{ className: "small" }}
@@ -196,7 +202,7 @@ const BookGrid = () => {
                                 }}
                             >
                             </TextField>
-                        
+
                             <FormControl className={classes.formControl} >
                                 <InputLabel htmlFor="select">Sort By</InputLabel>
                                 <Select onChange={sortBooks} value={sortBy}>
@@ -209,7 +215,7 @@ const BookGrid = () => {
                 </Grid>
                 <Grid container spacing={3} className="book-grid">
                     {books.map((book) => (
-                        <Grid item xs={3}   key={book.id} marginBottom="2vh">
+                        <Grid item xs={3} key={book.id} marginBottom="2vh">
                             <BookCard elevation={3}>
                                 <BookImage
                                     src={book.base64image}
@@ -232,16 +238,17 @@ const BookGrid = () => {
 
                 </Grid>
             </GridContainer>
+            <Pagewrapper>
                 <Pagination
                     count={bookResponse.totalPages}
                     page={filters.pageIndexs}
-                        
                     onChange={(e, newpage) => {
                         setFilters({ ...defaultFilter, pageIndex: newpage })
                     }
                     }
                 />
-            
+            </Pagewrapper>
+
         </div>
     );
 };
