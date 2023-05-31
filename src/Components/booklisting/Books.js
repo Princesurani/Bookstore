@@ -1,5 +1,5 @@
 import Grid from '@material-ui/core/Grid';
-import Bookcard from "./Bookcard";
+import Bookcard from "../booklisting/Bookcard";
 
 import styled from "@mui/system/styled";
 

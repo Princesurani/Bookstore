@@ -207,9 +207,9 @@ const BookGrid = () => {
                         </Coldivright>
                     </div>
                 </Grid>
-                <Grid container spacing={3} className="book-grid">
+                <Grid container spacing={2} className="book-grid">
                     {books.map((book) => (
-                        <Grid item xs={3}   key={book.id} marginBottom="2vh">
+                        <Grid item xs={4} sm={3} md={4} key={book.id} marginBottom="2vh">
                             <BookCard elevation={3}>
                                 <BookImage
                                     src={book.base64image}

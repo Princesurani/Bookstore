@@ -5,7 +5,8 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import styled from "@mui/system/styled";
 import { useAuthContext } from "../contexts/authcontext";
 import { RoutePaths } from "../utils/enum";
-
+import { useMemo } from "react";
+import Shared from "../utils/Shared";
 
 const Navull = styled("ul")`
     font-size: 19px;
@@ -41,6 +42,11 @@ const Navli = styled("li")`
 const Header = () => {
     const authContext = useAuthContext();
 
+    const items= useMemo(()=>{
+        return Shared.NavigationItems.filter(
+            (item)=>!item.access.length|| item.access.includes(authContext.user.roleId)
+        )
+    },[authContext.user])
 
     return (
 
@@ -76,9 +82,15 @@ const Header = () => {
                             <Navli >
                                 <NavLink to={RoutePaths.contact}>Contact</NavLink>
                             </Navli>
-                            <Navli >
-                                <NavLink to={RoutePaths.book} >Books</NavLink>
-                            </Navli>
+                            
+
+                            {items.map((item,index)=>(
+                                <Navli key={index}>
+                                    <NavLink to={item.route}>
+                                        {item.name}
+                                    </NavLink>
+                                </Navli>
+                            ))}
                         </div>
                     }
 

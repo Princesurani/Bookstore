@@ -35,7 +35,7 @@ const SearchButton = styled(IconButton)`
     
     border-radius: 3px;
     &:hover {
-      background-color: #333;
+      background-color: grey;
 
     }
   }
@@ -61,7 +61,7 @@ export default function Searchb() {
   };
   return (
     <>
-      <SearchForm name="searchForm" onSubmit={handleSearch} >
+      <SearchForm name="searchForm" onSubmit={handleSearch}>
         <Searchcenter>
           <input
             type="text"
@@ -69,7 +69,7 @@ export default function Searchb() {
             value={query}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <SearchButton type="submit" color="inherit" aria-label="search">
+          <SearchButton onClick={handleSearch} type='submit' color="inherit" >
             <SearchIcon />
           </SearchButton>
         </Searchcenter>
