@@ -65,7 +65,7 @@ export default function Searchb() {
         <Searchcenter>
           <input
             type="text"
-            placeholder="Search for a book  "
+            placeholder="Search book here  "
             value={query}
             onChange={(e) => setSearchTerm(e.target.value)}
           />

@@ -61,10 +61,9 @@ float: left;
 
 const Coldivright = styled("div")`
     float: right;
-
+    
     & input{
-        width:12cm;
-
+        padding-right:180px;
     }
 `;
 
@@ -183,7 +182,7 @@ const BookGrid = () => {
             <Title ><u>Book Listing</u></Title>
             <GridContainer>
                 <Grid>
-                    <div class="row">
+                    <div>
                         <Coldivleft>
                             <span>Total-{bookResponse.totalItems}</span>
                         </Coldivleft>
