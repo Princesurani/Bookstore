@@ -6,9 +6,10 @@ import * as Yup from 'yup';
 import { toast } from 'react-toastify';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import authService from '../../service/authsevice';
-import {  NavLink, useNavigate, } from 'react-router-dom';
+import {  Navigate, NavLink, useNavigate, } from 'react-router-dom';
 import { useAuthContext } from '../contexts/authcontext';
 import { RoutePaths } from '../utils/enum';
+import { Link } from 'react-router-dom';
 
 
 const validationSchema = Yup.object().shape({
@@ -19,7 +20,6 @@ const validationSchema = Yup.object().shape({
 
   password: Yup.string()
     .min(4, "Password is too short - should be 8 chars minimum.")
-    .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
     .required("No Password provided."),
   
 });
@@ -58,17 +58,19 @@ const FieldWrapper = styled('div')`
   margin-bottom: 2rem;
 `;
 
-const RegisterButton = styled(Button)`
+const LoginButton = styled(Button)`
   align-self: flex-start;
   margin-top: 2rem;
   color:white;
-  background-color: black;
+  background-color: darkblue;
 `;
 
 const Login = () => {
   const authContext = useAuthContext();
   const navigate =useNavigate();
-
+  const redirect = () => {
+    navigate(RoutePaths.user);
+  }
   const handleSubmit = (data) => {
 
     // console.log(data);
@@ -93,11 +95,11 @@ const Login = () => {
   return (
     <Container component="main">
 
-      <Breadcrumbs aria-label="breadcrumb">
+      {/* <Breadcrumbs aria-label="breadcrumb">
       <NavLink style={{ color: 'black' }} to="/home" >home</NavLink>
 
         <Typography color="textPrimary">Login </Typography>
-      </Breadcrumbs>
+      </Breadcrumbs> */}
 
       <FormContainer style={{ margin: '2rem' }}>
         <Typography component="h1" variant="h4" align="center" marginY='4rem'>
@@ -145,11 +147,11 @@ const Login = () => {
                 
               </FieldWrapper>
 
-              <RegisterButton type="submit" variant="contained" >
+              <LoginButton type="submit" variant="contained" >
                 login
-              </RegisterButton>
+              </LoginButton>
               <SectionTitle></SectionTitle>
-              <NavLink to="/register" style={{color:"black"}}>New user? create Account here</NavLink>
+              <NavLink to="/register" style={{ color: "darkblue" }}>New user? Create Account here</NavLink>
             </Form>
           )}
         </Formik>

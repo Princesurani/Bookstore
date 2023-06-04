@@ -29,11 +29,49 @@ const getAll = async (params) => {
     })
 };
 
+const AddBook = (bookData) => {
+    const url = `${STRING}`;
+    return request.post(url, bookData).then((res) => {
+        return res;
+    });
+};
+
+const UpdateBook = (bookData) => {
+    const url = `${STRING}`;
+    return request.put(url, bookData).then((res) => {
+        return res;
+    });
+};
+
+const DeleteBook = (bookId) => {
+    const url = `${STRING}?id=${bookId}`;
+    return request.delete(url).then((res) => {
+        return res;
+    });
+};
+const save = async (data) => {
+    if (data.id) {
+      const url = `${STRING}`;
+      return request.put(url, data).then((res) => {
+        return res;
+      });
+    } else {
+      const url = `${STRING}`;
+      return request.post(url, data).then((res) => {
+        return res;
+      });
+    }
+  };
+  
 const bookService = {
     searchBook,
     getAllBooks,
     getById,
-    getAll
+    getAll,
+    AddBook,
+    UpdateBook,
+    DeleteBook,
+    save
 }
 
 export default bookService;

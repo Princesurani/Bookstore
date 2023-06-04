@@ -12,6 +12,13 @@ const getAll = async (params) => {
   });
 };
 
+const getAllCategories = () => {
+  const url = `${ENDPOINT}/all`;
+  return request.get(url).then((res) => {
+      return res;
+  });
+};
+
 const getById = async (id) => {
   const url = `${ENDPOINT}/byId?id=${id}`;
   return request.get(url).then((res) => {
@@ -40,6 +47,6 @@ const save = async (data) => {
   }
 };
 
-const categoryService = { getAll, getById, deleteCategory, save };
+const categoryService = { getAll, getById, deleteCategory, save,getAllCategories };
 
 export default categoryService;

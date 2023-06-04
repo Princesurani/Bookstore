@@ -1,38 +1,62 @@
 import { Outlet, NavLink } from "react-router-dom";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import HomeIcon from '@material-ui/icons/Home';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded'; import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import styled from "@mui/system/styled";
 import { useAuthContext } from "../contexts/authcontext";
 import { RoutePaths } from "../utils/enum";
 import { useMemo } from "react";
-import Shared from "../utils/Shared";
+import Shared from "../utils/shared";
+import { Button } from "@material-ui/core";
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import Searchbar from "./searchbar";
+
 
 const Navull = styled("ul")`
+    position:relative;
     font-size: 19px;
     align-items: center;
     list-style-type: none;
     margin: 0;
     padding-right: 30px;
     overflow: hidden;
-    background-color: #333;
+    background-color: darkblue;
+    box-shadow: 0 2px 4px 3px rgba(0,0,0,.5);
+
     `;
 
 
 const Navli = styled("li")`
     float: right;
     margin-left: 5px;
+    margin:1px;
+    bottom:0;
 
     & a{
         display: block;
-        color: rgb(197, 191, 191);
+        color: white;
         text-align: center;
         padding: 16px 16px;
         text-decoration: none;
     }
     & a:hover{
         color: white;
+        font-size:21px;
+        text-decoration: underline;
+        
 
+    }
+    & svg:hover{
+        background-color: rgb(8, 82, 172);
+        border-radius: 7px;
+    }
+    & Button{
+        color:white;
+        background-color: rgb(25, 105, 203);
+        
+    }
+    & Button:hover{
+        text-decoration: underline;
+        background-color: rgb(8, 82, 172);
     }
 `;
 
@@ -42,11 +66,11 @@ const Navli = styled("li")`
 const Header = () => {
     const authContext = useAuthContext();
 
-    const items= useMemo(()=>{
+    const items = useMemo(() => {
         return Shared.NavigationItems.filter(
-            (item)=>!item.access.length|| item.access.includes(authContext.user.roleId)
+            (item) => !item.access.length || item.access.includes(authContext.user.roleId)
         )
-    },[authContext.user])
+    }, [authContext.user])
 
     return (
 
@@ -55,13 +79,17 @@ const Header = () => {
                 <Navull>
                     <Navli style={{ float: "left" }} >
                         <NavLink to="">
-                            <HomeIcon />
+                            <HomeRoundedIcon style={{ fontSize: '27px' }} />
                         </NavLink>
                     </Navli>
 
                     {!authContext.user.id ? (
                         <Navli >
-                            <NavLink to={RoutePaths.login} >login</NavLink>
+                            <NavLink to={RoutePaths.login} >
+                                <Button variant="contained" color="default">
+                                    <PowerSettingsNewIcon />- Login
+                                </Button>                            
+                            </NavLink>
                         </Navli>
                     ) :
                         <div>
@@ -69,22 +97,24 @@ const Header = () => {
                             <div class="icons">
                                 <Navli  >
                                     <NavLink onClick={authContext.signOut} to={RoutePaths.login}>
-                                        <AccountCircleIcon />
+                                        <Button variant="contained" color="default">
+                                            <PowerSettingsNewIcon />- Logout
+                                        </Button>
                                     </NavLink>
 
                                 </Navli>
                                 <Navli >
                                     <NavLink to={RoutePaths.book}>
-                                        <AddShoppingCartIcon />
+                                        <AddShoppingCartIcon style={{ fontSize: '27px' }} />
                                     </NavLink>
                                 </Navli>
                             </div>
                             <Navli >
                                 <NavLink to={RoutePaths.contact}>Contact</NavLink>
                             </Navli>
-                            
 
-                            {items.map((item,index)=>(
+
+                            {items.map((item, index) => (
                                 <Navli key={index}>
                                     <NavLink to={item.route}>
                                         {item.name}
@@ -97,7 +127,7 @@ const Header = () => {
                 </Navull>
 
             </nav>
-
+            {authContext.user.id ? <Searchbar /> : ""}
             <Outlet />
 
         </>

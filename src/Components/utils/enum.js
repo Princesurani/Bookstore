@@ -1,18 +1,22 @@
 export const RoutePaths = {
-    home: "/home",
-    login: "/login",
-    register: "/register",
-    about: "/about",
-    contact: "/contact",
-    user: "/user",
-    category: "/category",
-    book: "/book",
-    updateprofile: "/update-profile",
-    edituser: "/edit-user/:id",
-  };
-  
-  export const Role = {
-    Admin: 1,
-    Seller: 2,
-    Buyer: 3,
-  };
+  home: "/home",
+  login: "/login",
+  register: "/register",
+  about: "/about",
+  contact: "/contact",
+  book: "/book",
+  editbook: "/edit-book/:id",
+  addbook: "/add-book",
+  user: "/user",
+  edituser: "/edit-user/:id",
+  category: "/category",
+  editCategory: "/edit-category/:id",
+  addCategory: "/add-category",
+  updateprofile: "/update-profile",
+};
+
+export const Role = {
+  Admin: 1,
+  Seller: 2,
+  Buyer: 3,
+};

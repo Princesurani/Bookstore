@@ -8,7 +8,7 @@ const Footerp = styled("p")`
     bottom: 0;
     width: 100%;
     position: relative;
-    background-color: grey;
+    background-color: darkblue;
     margin: 0;
     text-align: center;
     `;

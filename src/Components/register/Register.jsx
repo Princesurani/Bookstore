@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { styled } from '@mui/system';
-import { TextField, Button, Typography, Container, MenuItem } from '@material-ui/core';
+import { TextField, Button, Typography, Container, MenuItem, FormControl, InputLabel, Select } from '@material-ui/core';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import CustomSelect from './Costomselect';
 import { toast } from 'react-toastify';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import authService from '../../service/authsevice';
 import { useNavigate, NavLink, } from 'react-router-dom';
+import userService from '../../service/userservice';
+import { useEffect } from 'react';
 
 
 
@@ -27,7 +28,6 @@ const validationSchema = Yup.object().shape({
 
   password: Yup.string()
     .min(4, "Password is too short - should be 4 chars minimum.")
-    .matches(/[a-zA-Z]/, "Password can only contain Latin letters.")
     .required("No Password provided."),
   confirmPassword: Yup.string()
     .oneOf([Yup.ref('password'), null], 'Password does not match')
@@ -70,12 +70,11 @@ const FieldWrapper = styled('div')`
 `;
 
 
-
 const RegisterButton = styled(Button)`
   align-self: flex-start;
   margin-top: 2rem;
   color:white;
-  background-color: black;
+  background-color: darkblue;
 `;
 
 const Regdiv = styled("div")`
@@ -85,6 +84,19 @@ const Regdiv = styled("div")`
 
 const Register = () => {
   const navigate = useNavigate();
+  const [roles, setRoles] = useState([]);
+
+  const getRoles = () => {
+    userService.getAllRoles().then((res) => {
+      if (res) {
+        setRoles(res);
+      }
+    });
+  };
+
+  useEffect(() => {
+    getRoles();
+  }, []);
 
   const handleSubmit = (data) => {
 
@@ -104,12 +116,11 @@ const Register = () => {
   return (
     <Regdiv>
       <Container component="main">
-
-        <Breadcrumbs aria-label="breadcrumb">
+        {/* <Breadcrumbs aria-label="breadcrumb">
           <NavLink style={{ color: 'black', }} to="/home" >home</NavLink>
           <Typography color="textPrimary">Create an account</Typography>
-        </Breadcrumbs>
-       
+        </Breadcrumbs> */}
+
         <FormContainer style={{ margin: '2rem' }}>
           <Typography component="h1" variant="h4" align="center" marginY='4rem'>
             <u>Create new Account</u>
@@ -164,19 +175,23 @@ const Register = () => {
                     error={touched.email && !!errors.email}
                     helperText={touched.email && errors.email}
                   />
-                  <Field
-                    component={CustomSelect}
-                    variant="outlined"
-                    fullWidth
-                    id="roleId"
-                    name="roleId"
-                    label="Role"
-                    error={errors.role && touched.role}
-                    helperText={errors.role && touched.role && errors.role}
-                  >
-                    <MenuItem value="1">Buyer</MenuItem>
-                    <MenuItem value="2">Seller</MenuItem>
-                  </Field>
+                  <FormControl variant="outlined" fullWidth marginBottom="1rem">
+                    <InputLabel id="role-label">Role</InputLabel>
+
+                    <Field
+                      as={Select}
+                      name="roleId"
+                      id={"roleId"}
+                      label="Role"
+                    >
+                      {roles.length > 0 &&
+                        roles.map((role) => (
+                          <MenuItem value={role.id} key={"name" + role.id}>
+                            {role.name}
+                          </MenuItem>
+                        ))}
+                    </Field>
+                  </FormControl>
                 </FieldWrapper>
 
                 <FieldWrapper>
@@ -208,11 +223,11 @@ const Register = () => {
                   />
                 </FieldWrapper>
 
-                <RegisterButton type="submit" variant="contained" >
+                <RegisterButton type="submit" variant="contained"  >
                   Register
                 </RegisterButton>
                 <SectionTitle></SectionTitle>
-                <NavLink to="/login" style={{ color: "black" }}>Already an user? Login here</NavLink>
+                <NavLink to="/login" style={{ color: "darkblue" }}>Already an user? Login here</NavLink>
               </Form>
             )}
           </Formik>

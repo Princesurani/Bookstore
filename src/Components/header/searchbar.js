@@ -7,12 +7,15 @@ import IconButton from "@material-ui/core/IconButton";
 const SearchForm = styled("form")`
   display: flex;
   align-items: center;
-  background-color: grey;
+  background-color: rgb(220, 220, 220);
   //border-radius: 4px;
-  padding: 3px;
+  padding: 5px;
   padding-left: 5px;
   padding-right: 5px;
   width: auto;
+  margin-top:30px;
+ // box-shadow: 0 2px 4px 3px rgba(0,0,0,.3);
+
 
   & input {
     border: none;
@@ -20,6 +23,7 @@ const SearchForm = styled("form")`
     padding: 10px;
     width:15cm;
     font-size: 16px;
+    border-radius: 5px;
   }
 `;
 const Searchcenter = styled("form")`
@@ -33,9 +37,9 @@ const SearchButton = styled(IconButton)`
     padding: 8px;
     margin-left: 5px;
     
-    border-radius: 3px;
+    border-radius: 5px;
     &:hover {
-      background-color: grey;
+      background-color: darkblue;
 
     }
   }
@@ -60,7 +64,7 @@ export default function Searchb() {
     }
   };
   return (
-    <>
+    <div>
       <SearchForm name="searchForm" onSubmit={handleSearch}>
         <Searchcenter>
           <input
@@ -80,7 +84,7 @@ export default function Searchb() {
           <li key={book.id}>{book.name}</li>
         ))}
       </span>
-    </>
+    </div>
   );
 
 }

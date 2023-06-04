@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Button, FormControl, Grid, MenuItem, TextField } from "@material-ui/core";
+import { Button, FormControl, Grid, MenuItem, TextField, Typography } from "@material-ui/core";
 import bookService from "../../service/bookservice";
 import { styled } from '@mui/system';
 import { Paper } from "@material-ui/core";
@@ -15,7 +15,7 @@ const GridContainer = styled(Grid)`
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 2rem;
   padding: 5px;
-  margin:1cm;
+  margin:0.5cm;
 `;
 
 const BookCard = styled(Paper)`
@@ -60,18 +60,10 @@ float: left;
 `;
 
 const Coldivright = styled("div")`
-    float: right;
-    
-    & input{
-        padding-right:180px;
-    }
+    float: right;  
 `;
 
-const Title = styled("span")`
-  font-size: 2rem;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
-`;
 const Pagewrapper = styled("div")`
     & ul{
         float: center;
@@ -90,6 +82,16 @@ const useStyles = makeStyles((theme) => ({
     },
     selectEmpty: {
         marginTop: theme.spacing(2),
+    },
+    root: {
+        width: '100%',
+    },
+    paper: {
+        width: '80%',
+        marginBottom: theme.spacing(3),
+        marginTop: '1cm',
+        paddingTop: '0.5cm',
+
     },
 
 }));
@@ -179,75 +181,81 @@ const BookGrid = () => {
     return (
 
         <div >
-            <Title ><u>Book Listing</u></Title>
-            <GridContainer>
-                <Grid>
-                    <div>
-                        <Coldivleft>
-                            <span>Total-{bookResponse.totalItems}</span>
-                        </Coldivleft>
-                        <Coldivright>
-                            <TextField
+            <div className={classes.root}>
+                <Paper className={classes.paper}>
+                <Typography variant="h4">Book-Listing</Typography><hr/>
+                
+                    <GridContainer>
+                        <Grid>
+                            <div>
+                                <Coldivleft>
+                                    <span>Total-{bookResponse.totalItems}</span>
+                                </Coldivleft>
+                                <Coldivright>
+                                    <TextField
+                                        style={{ width: '400px' }}
 
-                                placeholder="Search.."
-                                variant="outlined"
-                                inputProps={{ className: "small" }}
-                                onChange={(e) => {
-                                    setFilters({
-                                        ...filters,
-                                        keyword: e.target.value,
-                                        pageIndex: 1
-                                    })
-                                }}
-                            >
-                            </TextField>
+                                        placeholder="Search.."
+                                        variant="outlined"
+                                        inputProps={{ className: "small" }}
+                                        onChange={(e) => {
+                                            setFilters({
+                                                ...filters,
+                                                keyword: e.target.value,
+                                                pageIndex: 1
+                                            })
+                                        }}
+                                    >
+                                    </TextField>
 
-                            <FormControl className={classes.formControl} >
-                                <InputLabel htmlFor="select">Sort By</InputLabel>
-                                <Select onChange={sortBooks} value={sortBy}>
-                                    <MenuItem value="a-z">a - z</MenuItem>
-                                    <MenuItem value="z-a">z - a</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Coldivright>
-                    </div>
-                </Grid>
-                <Grid container spacing={3} className="book-grid">
-                    {books.map((book) => (
-                        <Grid item xs={3} key={book.id} marginBottom="2vh">
-                            <BookCard elevation={3}>
-                                <BookImage
-                                    src={book.base64image}
-                                    alt={book.name}
-                                    className="book-image"
-                                />
-                                <BookName variant="h6" style={{ fontSize: "1rem" }}>
-                                    {book.name}
-                                </BookName>
-                                <BookSub variant="subtitle1">
-                                    {book.description.slice(0, 30)}
-                                </BookSub>
-                                <BookSub variant="subtitle1">{book.price} ₹</BookSub>
-                                <Button variant="contained" color="secondary">
-                                    Add to Cart
-                                </Button>
-                            </BookCard>
+                                    <FormControl className={classes.formControl} >
+                                        <InputLabel htmlFor="select">Sort By</InputLabel>
+                                        <Select onChange={sortBooks} value={sortBy}>
+                                            <MenuItem value="a-z">a - z</MenuItem>
+                                            <MenuItem value="z-a">z - a</MenuItem>
+                                        </Select>
+                                    </FormControl>
+                                </Coldivright>
+                            </div>
                         </Grid>
-                    ))}
+                        <Grid container spacing={6} className="book-grid">
+                            {books.map((book) => (
+                                <Grid item xs={4} key={book.id} marginBottom="2vh">
+                                    <BookCard elevation={3}>
+                                        <BookImage
+                                            src={book.base64image}
+                                            alt={book.name}
+                                            className="book-image"
+                                            style={{backgroundColor:'white'}}
+                                        />
+                                        <BookName variant="h6" style={{ fontSize: "1rem" }}>
+                                            {book.name}
+                                        </BookName>
+                                        <BookSub variant="subtitle1">
+                                            {book.description.slice(0, 30)}
+                                        </BookSub>
+                                        <BookSub variant="subtitle1">{book.price} ₹</BookSub>
+                                        <Button variant="contained" color="primary">
+                                            Add to Cart
+                                        </Button>
+                                    </BookCard>
+                                </Grid>
+                            ))}
 
-                </Grid>
-            </GridContainer>
-            <Pagewrapper>
-                <Pagination
-                    count={bookResponse.totalPages}
-                    page={filters.pageIndexs}
-                    onChange={(e, newpage) => {
-                        setFilters({ ...defaultFilter, pageIndex: newpage })
-                    }
-                    }
-                />
-            </Pagewrapper>
-
+                        </Grid>
+                    </GridContainer>
+                    <Pagewrapper>
+                        <Pagination
+                            count={bookResponse.totalPages}
+                            page={filters.pageIndexs}
+                            onChange={(e, newpage) => {
+                                setFilters({ ...defaultFilter, pageIndex: newpage })
+                            }
+                            }
+                        />
+                    </Pagewrapper>
+                </Paper>
+            </div>
         </div>
     );
 };

@@ -7,6 +7,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: 'rgb(233, 233, 233)';
+
 }
 
 code {
@@ -16,6 +18,16 @@ code {
 
 img {
   border-radius: 4%;
-  
+  background-color: rgb(233, 233, 233);
+
 }
 
+hr {
+  border:none;
+  height: 20px;
+ 	width: 93%;
+	height: 50px;
+	border-bottom: 1px solid #1f1209;
+	box-shadow: 0 5px 5px -5px #333;
+  margin: -40px  auto 10px;
+}
