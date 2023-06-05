@@ -13,6 +13,8 @@ export const RoutePaths = {
   editCategory: "/edit-category/:id",
   addCategory: "/add-category",
   updateprofile: "/update-profile",
+  cart: "/cart",
+
 };
 
 export const Role = {

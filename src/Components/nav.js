@@ -13,6 +13,7 @@ import EditUser from "./user/Edituser.js";
 import Category from "./category/category.js";
 import EditCategory from "./category/editcategory.js";
 import UpdateProfile from "./updateProfile/Updateprofile.js";
+import Cart from "./cart/Cart.jsx";
 const Nav = () => {   
     const authContext=useAuthContext(); 
       const navigate =useNavigate();
@@ -22,6 +23,9 @@ const Nav = () => {
             <Routes>
               <Route path="" element={<Home />} />
               <Route path={RoutePaths.home} element={<Home />} />
+              <Route path={RoutePaths.contact} element={<Contact />} />
+              <Route path={RoutePaths.register} element={<Register />}/>
+              <Route path={RoutePaths.login} element={<Login />}/>
 
               <Route path={RoutePaths.book} 
                 element={authContext.user.id?(<Books />):(navigate(RoutePaths.login))} 
@@ -52,9 +56,10 @@ const Nav = () => {
               <Route path={RoutePaths.updateprofile} 
                 element={authContext.user.id?(<UpdateProfile />):(navigate(RoutePaths.login))} 
               />  
-              <Route path={RoutePaths.contact} element={<Contact />} />
-              <Route path={RoutePaths.register} element={<Register />}/>
-              <Route path={RoutePaths.login} element={<Login />}/>
+              <Route path={RoutePaths.cart} 
+                element={<Cart/>}
+              /> 
+              
           </Routes>
         </>
     )

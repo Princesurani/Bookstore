@@ -1,3 +1,4 @@
+import cartService from "../../service/cartservice";
 import { Role, RoutePaths } from "./enum";
 
 const messages = {
@@ -19,17 +20,17 @@ const NavigationItems = [
     {
         name: "Users",
         route: RoutePaths.user,
-        access: [Role.Admin, Role.Seller],
+        access: [Role.Admin, Role.Seller, Role.Buyer],
     },
     {
         name: "Categories",
         route: RoutePaths.category,
-        access: [Role.Admin,Role.Seller],
+        access: [Role.Admin, Role.Seller, Role.Buyer],
     },
     {
         name: "Books",
         route: RoutePaths.book,
-        access: [Role.Admin, Role.Seller],
+        access: [Role.Admin, Role.Seller, Role.Buyer],
     },
     {
         name: "UpdateProfile",
@@ -37,6 +38,23 @@ const NavigationItems = [
         access: [Role.Admin, Role.Seller, Role.Buyer],
     },
 ];
+
+const addToCart = async (book, id) => {
+    return cartService
+      .add({
+        userId: id,
+        bookId: book.id,
+        quantity: 1,
+      })
+      .then((res) => {
+        return { error: false, message: "Item added in cart" };
+      })
+      // .catch((e) => {
+      //   if (e.status === 500)
+      //     return { error: true, message: "Item already in the cart" };
+      //   else return { error: true, message: "something went wrong" };
+      // });
+  };
 
 const hasAccess = (pathname, user) => {
   const navItem = NavigationItems.find((x) => pathname.includes(x.route));
@@ -49,9 +67,10 @@ const hasAccess = (pathname, user) => {
   return true;
 };
 
-
+// eslint-disable-next-line import/no-anonymous-default-export
 export default {
     messages,
+    addToCart,
     hasAccess,
     localStorageKeys,
     NavigationItems,

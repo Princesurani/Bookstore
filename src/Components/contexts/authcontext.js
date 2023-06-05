@@ -18,11 +18,15 @@ const initialState = {
     setUser: () => { },
     user: initialUserValue,
     signOut: () => { },
+    appInitialize: false,
+
 };
 
 export const AuthContext = createContext(initialState);
 
 export const AuthWrapper = ({ children }) => {
+    const [appInitialize, setAppInitialize] = useState(false);
+
     const [user, _setUser] = useState(initialUserValue);
     const navigate = useNavigate();
     const { pathname } = useLocation();
@@ -63,10 +67,12 @@ export const AuthWrapper = ({ children }) => {
         // }
     }, [pathname, user]);
 
-    const value = {
+    let value = {
         user,
         setUser,
         signOut,
+        appInitialize,
+
     };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

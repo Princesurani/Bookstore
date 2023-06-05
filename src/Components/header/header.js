@@ -1,6 +1,7 @@
 import { Outlet, NavLink } from "react-router-dom";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import HomeRoundedIcon from '@material-ui/icons/HomeRounded'; import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import styled from "@mui/system/styled";
 import { useAuthContext } from "../contexts/authcontext";
 import { RoutePaths } from "../utils/enum";
@@ -8,7 +9,7 @@ import { useMemo } from "react";
 import Shared from "../utils/shared";
 import { Button } from "@material-ui/core";
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import Searchbar from "./searchbar";
+import Searchbar from "./seachbar";
 
 
 const Navull = styled("ul")`
@@ -35,7 +36,7 @@ const Navli = styled("li")`
         display: block;
         color: white;
         text-align: center;
-        padding: 16px 16px;
+        padding: 16px 10px;
         text-decoration: none;
     }
     & a:hover{
@@ -46,17 +47,19 @@ const Navli = styled("li")`
 
     }
     & svg:hover{
-        background-color: rgb(8, 82, 172);
-        border-radius: 7px;
+        // background-color: rgb(8, 82, 172);
+        text-decoration: underline;
     }
     & Button{
         color:white;
-        background-color: rgb(25, 105, 203);
+        border-color: white;
+
+        // background-color: rgb(25, 25, 203);
         
     }
     & Button:hover{
         text-decoration: underline;
-        background-color: rgb(8, 82, 172);
+        // background-color: rgb(8, 82, 172);
     }
 `;
 
@@ -84,28 +87,40 @@ const Header = () => {
                     </Navli>
 
                     {!authContext.user.id ? (
+                        <>
                         <Navli >
                             <NavLink to={RoutePaths.login} >
-                                <Button variant="contained" color="default">
+                                <Button variant="outlined" color="primary">
                                     <PowerSettingsNewIcon />- Login
                                 </Button>                            
                             </NavLink>
                         </Navli>
+                        <Navli >
+                            <NavLink to={RoutePaths.register} >
+                                <Button variant="outlined" color="primary">
+                                    <PowerSettingsNewIcon />- Register
+                                </Button>                            
+                            </NavLink>
+                        </Navli>
+                        </>
                     ) :
                         <div>
 
                             <div class="icons">
                                 <Navli  >
                                     <NavLink onClick={authContext.signOut} to={RoutePaths.login}>
-                                        <Button variant="contained" color="default">
+                                        <Button variant="outlined" color="primary">
                                             <PowerSettingsNewIcon />- Logout
                                         </Button>
                                     </NavLink>
 
                                 </Navli>
                                 <Navli >
-                                    <NavLink to={RoutePaths.book}>
-                                        <AddShoppingCartIcon style={{ fontSize: '27px' }} />
+                                    <NavLink to={RoutePaths.cart}>
+                                    <Button variant="outlined" color="primary">
+                                    <AddShoppingCartIcon  />- Cart
+                                        </Button>
+                                        
                                     </NavLink>
                                 </Navli>
                             </div>
@@ -127,7 +142,8 @@ const Header = () => {
                 </Navull>
 
             </nav>
-            {authContext.user.id ? <Searchbar /> : ""}
+            {/* {authContext.user.id ? <Searchbar /> : ""} */}
+            <Searchbar/>
             <Outlet />
 
         </>

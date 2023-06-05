@@ -8,6 +8,11 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import categoryService from "../../service/categorysevices";
 import { Pagination } from "@material-ui/lab";
+import Shared from "../utils/shared";
+import {  useAuthContext } from "../contexts/authcontext";
+import { toast } from "react-toastify";
+import { useCartContext } from "../contexts/cartcontext";
+import cartService from "../../service/cartservice";
 
 
 const GridContainer = styled(Grid)`
@@ -105,6 +110,9 @@ const defaultFilter = {
 
 const BookGrid = () => {
     const classes = useStyles();
+    const authContext = useAuthContext();
+    const cartContext = useCartContext();
+
 
     const [bookResponse, setBookResponse] = useState({
         pageIndex: 0,
@@ -176,7 +184,16 @@ const BookGrid = () => {
     };
 
 
-
+    const addToCart = (book) => {
+        Shared.addToCart(book, authContext.user.id).then((res) => {
+          if (res.error) {
+            toast.error(res.message);
+          } else {
+            cartContext.updateCart();
+            toast.success(res.message);
+          }
+        });
+      };
 
     return (
 
@@ -235,7 +252,7 @@ const BookGrid = () => {
                                             {book.description.slice(0, 30)}
                                         </BookSub>
                                         <BookSub variant="subtitle1">{book.price} ₹</BookSub>
-                                        <Button variant="contained" color="primary">
+                                        <Button variant="contained" color="primary" onClick={() => addToCart(book)}>
                                             Add to Cart
                                         </Button>
                                     </BookCard>
