@@ -8,7 +8,7 @@ const initialCartDetails = {
   emptyCart: () => {},
 };
 
-const cartContext = createContext(initialCartDetails);
+const card = createContext(initialCartDetails);
 
 export const CartWrapper = ({ children }) => {
   const authContext = useAuthContext();
@@ -39,9 +39,9 @@ export const CartWrapper = ({ children }) => {
     updateCart,
   };
 
-  return <cartContext.Provider value={value}>{children}</cartContext.Provider>;
+  return <card.Provider value={value}>{children}</card.Provider>;
 };
 
 export const useCartContext = () => {
-  return useContext(cartContext);
+  return useContext(card);
 };

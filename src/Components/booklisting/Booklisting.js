@@ -191,6 +191,7 @@ const BookGrid = () => {
           } else {
             cartContext.updateCart();
             toast.success(res.message);
+            console.log(cartContext.cartData);
           }
         });
       };
