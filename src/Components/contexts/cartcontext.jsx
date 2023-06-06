@@ -8,7 +8,7 @@ const initialCartDetails = {
   emptyCart: () => {},
 };
 
-const card = createContext(initialCartDetails);
+const cartContext = createContext(initialCartDetails);
 
 export const CartWrapper = ({ children }) => {
   const authContext = useAuthContext();
@@ -18,8 +18,9 @@ export const CartWrapper = ({ children }) => {
     setCartData([]);
   };
 
+  
   const updateCart = (updatedCartList) => {
-    console.log("fd");
+    console.log("called");
     if (updatedCartList) {
       setCartData(updatedCartList);
     } else if (authContext.user.id) {
@@ -38,10 +39,10 @@ export const CartWrapper = ({ children }) => {
     emptyCart,
     updateCart,
   };
-
-  return <card.Provider value={value}>{children}</card.Provider>;
+  return <cartContext.Provider value={value}>{children}</cartContext.Provider>;
 };
 
 export const useCartContext = () => {
-  return useContext(card);
+  return useContext(cartContext);
 };
+

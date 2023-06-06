@@ -52,6 +52,7 @@ const Addbutton = styled(Button)`
 const Regdiv = styled("div")`
     margin-bottom: 2cm;
 `;
+
 const Imagediv = styled("div")`
     margin-left: 1cm;
 `;
@@ -84,6 +85,7 @@ const Editbook = () => {
         categoryService.getAll().then((res) => {
             setCategories(res);
         })
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     const getbookbyID = () => {

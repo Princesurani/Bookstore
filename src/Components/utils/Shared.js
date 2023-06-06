@@ -39,22 +39,23 @@ const NavigationItems = [
     },
 ];
 
+
 const addToCart = async (book, id) => {
-    return cartService
-      .add({
-        userId: id,
-        bookId: book.id,
-        quantity: 1,
-      })
-      .then((res) => {
-        return { error: false, message: "Item added in cart" };
-      })
-      // .catch((e) => {
-      //   if (e.status === 500)
-      //     return { error: true, message: "Item already in the cart" };
-      //   else return { error: true, message: "something went wrong" };
-      // });
-  };
+  return cartService
+    .add({
+      userId: id,
+      bookId: book.id,
+      quantity: 1,
+    })
+    .then((res) => {
+      return { error: false, message: "Item added in cart" };
+    })
+    .catch((e) => {
+      // if (e.status === 500)
+      //   return { error: true, message: "Item already in the cart" };
+      // else return { error: true, message: "something went wrong" };
+    });
+};
 
 const hasAccess = (pathname, user) => {
   const navItem = NavigationItems.find((x) => pathname.includes(x.route));

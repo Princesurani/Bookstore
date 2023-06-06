@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { defaultFilter, RecordsPerPage } from "../utils/constant";
 import { useNavigate } from "react-router-dom";
-import { Typography, TextField, styled, makeStyles, Paper } from "@material-ui/core";
+import { Typography, TextField, makeStyles, Paper } from "@material-ui/core";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -118,6 +118,7 @@ const User = () => {
                         onChange={(e) => {
                             setFilters({ ...filters, keyword: e.target.value, pageIndex: 1 });
                         }}
+                        
                     />
                 <TableContainer>
                     <Table aria-label="simple table">

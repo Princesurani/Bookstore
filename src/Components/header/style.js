@@ -443,6 +443,12 @@ const headerStyle = makeStyles((theme) => ({
               padding: "10px",
               boxShadow:
                 "rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px",
+
+              "& hr": {
+                   width: "98%",
+                  margin:" -40px  auto 10px",
+                },
+
               "& .no-product": {
                 color: colorss.textColor,
                 fontWeight: "500",
@@ -455,11 +461,13 @@ const headerStyle = makeStyles((theme) => ({
               },
               "& .related-product-list": {
                 "& li": {
-                  padding: "10px 15px",
+                  padding: "5px 20px",
                   cursor: "pointer",
                   "&:hover": {
+                    
                     background: colorss.grayBg,
                     width:"100%",
+                    borderRadius:"6px",
                   },
                   "& .inner-block": {
                     display: "flex",
@@ -496,7 +504,7 @@ const headerStyle = makeStyles((theme) => ({
                       textAlign: "right",
                     },
                     " & a": {
-                      color: colorss.primary,
+                      color: "darkblue",
                       marginBottom:'0'
                     },
                   },

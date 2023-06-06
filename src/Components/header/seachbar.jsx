@@ -1,34 +1,28 @@
 import React from "react";
 import { headerStyle } from "./style";
 import { AppBar, Button, List, ListItem, TextField } from "@material-ui/core";
-import { Link, NavLink } from "react-router-dom";
-import shared from "../utils/shared";
+import { Link, useNavigate } from "react-router-dom";
 import bookService from "../../service/bookservice";
 import { useState } from "react";
-import { useMemo } from "react";
 import { toast } from "react-toastify";
+import { useAuthContext } from "../contexts/authcontext";
+import { useCartContext } from "../contexts/cartcontext";
+import { RoutePaths } from "../utils/enum";
+import Shared from "../utils/shared";
 
 const  Searchbar = () => {
   const classes = headerStyle();
-  //   const authContext = useAuthContext();
-  //   const cartContext = useCartContext();
-  // const [open, setOpen] = useState(false);
-  const open = false;
+    const authContext = useAuthContext();
+    const cartContext = useCartContext();
+  const navigate =useNavigate();
+
+  
   const [query, setquery] = useState("");
   const [bookList, setbookList] = useState([]);
   const [openSearchResult, setOpenSearchResult] = useState(false);
 
-  const items = useMemo(() => {
-    return shared.NavigationItems;
-    // return shared.NavigationItems.filter(
-    //   (item) =>
-    //     !item.access.length || item.access.includes(authContext.user.roleId)
-    // );
-  }, []);
+  
 
-  const openMenu = () => {
-    document.body.classList.toggle("open-menu");
-  };
 
   const searchBook = async () => {
     const res = await bookService.searchBook(query);
@@ -54,21 +48,21 @@ const  Searchbar = () => {
     setquery("");
   }
 
-  //   const addToCart = (book) => {
-  //     if (!authContext.user.id) {
-  //       navigate(RoutePaths.Login);
-  //       toast.error("Please login before adding books to cart");
-  //     } else {
-  //       Shared.addToCart(book, authContext.user.id).then((res) => {
-  //         if (res.error) {
-  //           toast.error(res.error);
-  //         } else {
-  //           toast.success("Item added in cart");
-  //           cartContext.updateCart();
-  //         }
-  //       });
-  //     }
-  //   };
+    const addToCart = (book) => {
+      if (!authContext.user.id) {
+        navigate(RoutePaths.Login);
+        toast.error("Please login before adding books to cart");
+      } else {
+        Shared.addToCart(book, authContext.user.id).then((res) => {
+          if (res.error) {
+            toast.error(res.error);
+          } else {
+            toast.success("Item added in cart");
+            cartContext.updateCart();
+          }
+        });
+      }
+    };
 
   return (
     <div className={classes.headerWrapper}>
@@ -98,15 +92,12 @@ const  Searchbar = () => {
                   {openSearchResult && (
                     <>
                       <div className="product-listing">
-                        {bookList?.length === 0 && (
-                          <p className="no-product">No product found</p>
-                        )}
-
                         {/* <p className="loading">Loading....</p> */}
                         <List className="related-product-list">
                           {bookList?.length > 0 &&
                             bookList.map((item, i) => {
                               return (
+                                <>
                                 <ListItem key={i}>
                                   <div className="inner-block">
                                     <div className="left-col">
@@ -118,16 +109,21 @@ const  Searchbar = () => {
                                         {item.price}
                                       </span>
                                       <p>
-                                      <Link onClick={() => {}}>
+                                      <Link  onClick={() => addToCart(item)}>
                                         Add to cart
                                       </Link>
                                       </p>
                                     </div>
                                   </div>
                                 </ListItem>
+                                  <hr/>
+                                </>
                               );
                             })}
                         </List>
+                        {bookList?.length === 0 && (
+                          <li className="no-product">No product found</li>
+                        )}
                       </div>
                     </>
                   )}
@@ -135,7 +131,7 @@ const  Searchbar = () => {
                 
                 <Button
                   type="submit"
-                  className="green-btn btn"
+                  className=" btn"
                   variant="contained"
                   style={{backgroundColor:"darkblue"}}
                   disableElevation
@@ -146,7 +142,7 @@ const  Searchbar = () => {
                 </Button>
                 <Button
                   type="submit"
-                  className="green-btn btn"
+                  className=" btn"
                   variant="contained"
                   style={{backgroundColor:"rgb(204, 5, 5)"}}
                   disableElevation

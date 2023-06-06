@@ -88,6 +88,7 @@ const Category = () => {
                     className="btn pink-btn"
                     variant="outlined"
                     color="primary"
+                    
                     onClick={() => navigate("/add-category")}
                 >
                     Add

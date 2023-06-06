@@ -4,12 +4,10 @@ import { TextField, Button, Typography, Container } from '@material-ui/core';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import authService from '../../service/authsevice';
-import {  Navigate, NavLink, useNavigate, } from 'react-router-dom';
+import {  NavLink, useNavigate, } from 'react-router-dom';
 import { useAuthContext } from '../contexts/authcontext';
 import { RoutePaths } from '../utils/enum';
-import { Link } from 'react-router-dom';
 
 
 const validationSchema = Yup.object().shape({
@@ -68,15 +66,11 @@ const LoginButton = styled(Button)`
 const Login = () => {
   const authContext = useAuthContext();
   const navigate =useNavigate();
-  const redirect = () => {
-    navigate(RoutePaths.user);
-  }
+ 
   const handleSubmit = (data) => {
 
     // console.log(data);
     delete data.firstName;
-    delete data.lastName;
-    delete data.roleId;
     delete data.id;
     delete data.confirmPassword;
     authService.login(data)
@@ -154,6 +148,7 @@ const Login = () => {
               <NavLink to="/register" style={{ color: "darkblue" }}>New user? Create Account here</NavLink>
             </Form>
           )}
+
         </Formik>
       </FormContainer>
     </Container>

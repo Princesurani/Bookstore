@@ -30,6 +30,7 @@ const Cart = () => {
     setTotalPrice(totalPrice);
   };
 
+
   useEffect(() => {
     setCartList(cartContext.cartData);
     setItemsInCart(cartContext.cartData.length);
@@ -107,7 +108,7 @@ const Cart = () => {
   return (
     <div className={classes.cartWrapper}>
       <div className="container">
-        <Typography variant="h1">Cart page</Typography>
+        <Typography variant="h4">Cart items</Typography><hr />
         <div className="cart-heading-block">
           <Typography variant="h2">
             My Shopping Bag ({itemsInCart} Items)
@@ -138,14 +139,14 @@ const Cart = () => {
                   <div className="cart-item-bottom-content">
                     <div className="qty-group">
                       <Button
-                        className="btn pink-btn"
+                        className="btn "
                         onClick={() => updateQuantity(cartItem, true)}
                       >
                         +
                       </Button>
                       <span className="number-count">{cartItem.quantity}</span>
                       <Button
-                        className="btn pink-btn"
+                        className="btn "
                         onClick={() => updateQuantity(cartItem, false)}
                       >
                         -
@@ -155,14 +156,19 @@ const Cart = () => {
                   </div>
                 </div>
               </div>
+              
             );
           })}
         </div>
-        <div className="btn-wrapper">
-          <Button className="btn pink-btn" onClick={placeOrder}>
-            Place order
-          </Button>
-        </div>
+        <Button
+          type="submit"
+          variant="contained"
+          style={{ backgroundColor: "darkblue", color: "white" }}
+          onClick={placeOrder}
+        >
+          Place order
+        </Button>
+
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as Yup from "yup";
-import { Typography, TextField, Button, FormControl, InputLabel, Select, Container } from "@material-ui/core";
+import { Typography, TextField, Button,  Container } from "@material-ui/core";
 import { useNavigate, useParams } from "react-router-dom";
 import categoryService from "../../service/categorysevices";
 import { Formik, Form, Field } from 'formik';
@@ -36,6 +36,7 @@ const FieldWrapper = styled('div')`
   margin-bottom: 2rem;
 
 `;
+
 
 const Addbutton = styled(Button)`
   align-self: flex-start;

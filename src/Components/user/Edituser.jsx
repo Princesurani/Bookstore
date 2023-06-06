@@ -6,9 +6,7 @@ import { TextField, Button, Typography, InputLabel, Select, FormControl, MenuIte
 import { Formik, Form, Field } from 'formik';
 import { useNavigate, useParams } from "react-router-dom";
 import userService from "../../service/userservice";
-import ValidationErrorMessage from '../ValidationErrorMessage';
 import { toast } from "react-toastify";
-import { useAuthContext } from "../contexts/authcontext";
 import Shared from '../utils/shared';
 import { RoutePaths } from "../utils/enum";
 
@@ -17,6 +15,7 @@ const FormContainer = styled('div')`
   flex-direction: column;
   margin: 2rem;
 `;
+
 
 const SectionTitle = styled('h2')`
   margin-bottom: 2.5rem;
@@ -54,7 +53,6 @@ const Regdiv = styled("div")`
 `;
 
 const EditUser = () => {
-  const authContext = useAuthContext();
   const [roles, setRoles] = useState([]);
   const [user, setUser] = useState();
   const navigate = useNavigate();

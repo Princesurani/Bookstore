@@ -9,10 +9,10 @@ import Select from '@material-ui/core/Select';
 import categoryService from "../../service/categorysevices";
 import { Pagination } from "@material-ui/lab";
 import Shared from "../utils/shared";
-import {  useAuthContext } from "../contexts/authcontext";
+import { useAuthContext } from "../contexts/authcontext";
 import { toast } from "react-toastify";
-import { useCartContext } from "../contexts/cartcontext";
-import cartService from "../../service/cartservice";
+import {  useCartContext } from "../contexts/cartcontext";
+
 
 
 const GridContainer = styled(Grid)`
@@ -165,8 +165,6 @@ const BookGrid = () => {
         return [];
     }, [categories, bookResponse]);
 
-
-
     const sortBooks = (e) => {
         setSortBy(e.target.value);
         const bookList = [...bookResponse.items];
@@ -183,26 +181,27 @@ const BookGrid = () => {
         setBookResponse({ ...bookResponse, items: bookList });
     };
 
-
-    const addToCart = (book) => {
+    const addBooktoCart = (book) => {
         Shared.addToCart(book, authContext.user.id).then((res) => {
-          if (res.error) {
-            toast.error(res.message);
-          } else {
-            cartContext.updateCart();
-            toast.success(res.message);
-            console.log(cartContext.cartData);
-          }
+            if (res.error) {
+                toast.error(res.message);
+            }
+            else {
+                cartContext.updateCart();
+                toast.success(res.message);
+                console.log(cartContext.cartData);
+                console.log("update");
+            }
         });
-      };
+    };
 
     return (
 
         <div >
             <div className={classes.root}>
                 <Paper className={classes.paper}>
-                <Typography variant="h4">Book-Listing</Typography><hr/>
-                
+                    <Typography variant="h4">Book-Listing</Typography><hr />
+
                     <GridContainer>
                         <Grid>
                             <div>
@@ -229,8 +228,8 @@ const BookGrid = () => {
                                     <FormControl className={classes.formControl} >
                                         <InputLabel htmlFor="select">Sort By</InputLabel>
                                         <Select onChange={sortBooks} value={sortBy}>
-                                            <MenuItem value="a-z">a - z</MenuItem>
-                                            <MenuItem value="z-a">z - a</MenuItem>
+                                            <MenuItem value="a-z">A - Z</MenuItem>
+                                            <MenuItem value="z-a">Z - A</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </Coldivright>
@@ -244,7 +243,7 @@ const BookGrid = () => {
                                             src={book.base64image}
                                             alt={book.name}
                                             className="book-image"
-                                            style={{backgroundColor:'white'}}
+                                            style={{ backgroundColor: 'white' }}
                                         />
                                         <BookName variant="h6" style={{ fontSize: "1rem" }}>
                                             {book.name}
@@ -253,7 +252,11 @@ const BookGrid = () => {
                                             {book.description.slice(0, 30)}
                                         </BookSub>
                                         <BookSub variant="subtitle1">{book.price} ₹</BookSub>
-                                        <Button variant="contained" color="primary" onClick={() => addToCart(book)}>
+                                        <Button 
+                                            className=" btn"
+                                            variant="contained" 
+                                            style={{ backgroundColor: "darkblue" ,color:"white"}} onClick={() => addBooktoCart(book)}
+                                        >
                                             Add to Cart
                                         </Button>
                                     </BookCard>

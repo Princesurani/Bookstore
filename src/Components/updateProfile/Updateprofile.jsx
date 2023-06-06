@@ -103,6 +103,7 @@ const UpdateProfile = () => {
         navigate(RoutePaths.home);
     }
 
+    
     return (
         <Regdiv>
       <Container component="main">

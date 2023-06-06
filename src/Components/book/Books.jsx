@@ -1,7 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, TextField, Typography } from "@material-ui/core";
 import bookService from "../../service/bookservice";
-import { styled } from '@mui/system';
 import { Paper } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import categoryService from "../../service/categorysevices";
@@ -24,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
-    
+
     paper: {
         width: '66%',
         marginBottom: theme.spacing(3),
@@ -122,26 +121,12 @@ const Books = () => {
         }
     };
 
-    const books = useMemo(() => {
-        const bookList = [...bookResponse.items];
-        if (bookList) {
-            bookList.forEach((element) => {
-                element.category = categories.find(
-                    (a) => a.id === element.categoryId
-                )?.name;
-            });
-            return bookList;
-        }
-        return [];
-    }, [categories, bookResponse]);
-
-
     return (
 
         <div >
             <div className={classes.root}>
                 <Paper className={classes.paper}>
-                <Typography variant="h4">Books</Typography>
+                    <Typography variant="h4">Books</Typography>
                     <hr />
                     <Button
                         style={{ float: "right", marginRight: '0.3cm', height: '55px' }}
@@ -199,6 +184,7 @@ const Books = () => {
                                                 }}
                                                 style={{ marginRight: "8px" }}
                                             >
+
                                                 Edit
                                             </Button>
 

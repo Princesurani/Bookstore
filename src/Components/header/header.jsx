@@ -1,7 +1,6 @@
 import { Outlet, NavLink } from "react-router-dom";
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
- import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import styled from "@mui/system/styled";
 import { useAuthContext } from "../contexts/authcontext";
 import { RoutePaths } from "../utils/enum";
@@ -124,6 +123,7 @@ const Header = () => {
                                     </NavLink>
                                 </Navli>
                             </div>
+
                             <Navli >
                                 <NavLink to={RoutePaths.contact}>Contact</NavLink>
                             </Navli>

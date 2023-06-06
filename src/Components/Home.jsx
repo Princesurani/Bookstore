@@ -6,5 +6,6 @@ export default function Home() {
       {/* <h1>welcome to e book store</h1> */}
       <BookGrid/>
       </section>
+      
   );
 }

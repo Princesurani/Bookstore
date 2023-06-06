@@ -2,7 +2,7 @@ import { React, createContext, useEffect, useState, useContext } from "react";
 import Shared from "../utils/shared";
 import { RoutePaths } from "../utils/enum";
 import { useNavigate, useLocation } from "react-router-dom";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const initialUserValue = {
     id: 0,
@@ -13,6 +13,7 @@ const initialUserValue = {
     role: "",
     password: "",
 };
+
 
 const initialState = {
     setUser: () => { },
@@ -25,7 +26,7 @@ const initialState = {
 export const AuthContext = createContext(initialState);
 
 export const AuthWrapper = ({ children }) => {
-    const [appInitialize, setAppInitialize] = useState(false);
+
 
     const [user, _setUser] = useState(initialUserValue);
     const navigate = useNavigate();
@@ -48,8 +49,9 @@ export const AuthWrapper = ({ children }) => {
         if (cache.id) {
             _setUser(cache);
         } else {
-             navigate(RoutePaths.login);
+            navigate(RoutePaths.login);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
@@ -65,13 +67,13 @@ export const AuthWrapper = ({ children }) => {
         //     navigate(RoutePaths.home);
         //     return;
         // }
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname, user]);
 
     let value = {
         user,
         setUser,
         signOut,
-        appInitialize,
 
     };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
