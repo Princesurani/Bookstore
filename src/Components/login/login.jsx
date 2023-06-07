@@ -72,6 +72,7 @@ const Login = () => {
     // console.log(data);
     delete data.firstName;
     delete data.id;
+    delete data.roleId;
     delete data.confirmPassword;
     authService.login(data)
       .then((res) => {
