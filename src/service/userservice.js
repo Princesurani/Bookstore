@@ -1,5 +1,4 @@
 import request from "./request";
-
 const ENDPOINT = "api/user";
 
 const getAllUsers = async (params) => {

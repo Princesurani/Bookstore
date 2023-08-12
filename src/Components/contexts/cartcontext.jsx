@@ -18,7 +18,6 @@ export const CartWrapper = ({ children }) => {
     setCartData([]);
   };
 
-  
   const updateCart = (updatedCartList) => {
     console.log("called");
     if (updatedCartList) {

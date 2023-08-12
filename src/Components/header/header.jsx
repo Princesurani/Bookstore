@@ -10,7 +10,6 @@ import { Button } from "@material-ui/core";
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import Searchbar from "./seachbar";
 
-
 const Navull = styled("ul")`
     position:relative;
     font-size: 19px;
@@ -23,7 +22,6 @@ const Navull = styled("ul")`
     box-shadow: 0 2px 4px 3px rgba(0,0,0,.5);
 
     `;
-
 
 const Navli = styled("li")`
     float: right;
@@ -62,9 +60,6 @@ const Navli = styled("li")`
     }
 `;
 
-
-
-
 const Header = () => {
     const authContext = useAuthContext();
 
@@ -81,26 +76,29 @@ const Header = () => {
                 <Navull>
                     <Navli style={{ float: "left" }} >
                         <NavLink to="">
-                            <HomeRoundedIcon style={{ fontSize: '27px' }} />
+                            <Button variant="outlined" color="primary">
+
+                                <HomeRoundedIcon style={{ fontSize: '27px' }} />- Home
+                            </Button>
                         </NavLink>
                     </Navli>
 
                     {!authContext.user.id ? (
                         <>
-                        <Navli >
-                            <NavLink to={RoutePaths.login} >
-                                <Button variant="outlined" color="primary">
-                                    <PowerSettingsNewIcon />- Login
-                                </Button>                            
-                            </NavLink>
-                        </Navli>
-                        <Navli >
-                            <NavLink to={RoutePaths.register} >
-                                <Button variant="outlined" color="primary">
-                                    <PowerSettingsNewIcon />- Register
-                                </Button>                            
-                            </NavLink>
-                        </Navli>
+                            <Navli >
+                                <NavLink to={RoutePaths.login} >
+                                    <Button variant="outlined" color="primary">
+                                        <PowerSettingsNewIcon />- Login
+                                    </Button>
+                                </NavLink>
+                            </Navli>
+                            <Navli >
+                                <NavLink to={RoutePaths.register} >
+                                    <Button variant="outlined" color="primary">
+                                        <PowerSettingsNewIcon />- Register
+                                    </Button>
+                                </NavLink>
+                            </Navli>
                         </>
                     ) :
                         <div>
@@ -116,10 +114,10 @@ const Header = () => {
                                 </Navli>
                                 <Navli >
                                     <NavLink to={RoutePaths.cart}>
-                                    <Button variant="outlined" color="primary">
-                                    <AddShoppingCartIcon  />- Cart
+                                        <Button variant="outlined" color="primary">
+                                            <AddShoppingCartIcon />- Cart
                                         </Button>
-                                        
+
                                     </NavLink>
                                 </Navli>
                             </div>
@@ -143,7 +141,7 @@ const Header = () => {
 
             </nav>
             {/* {authContext.user.id ? <Searchbar /> : ""} */}
-            <Searchbar/>
+            <Searchbar />
             <Outlet />
 
         </>

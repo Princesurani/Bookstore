@@ -3,7 +3,6 @@ import { Typography, TextField, Button, Container } from "@material-ui/core";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from "yup";
 import { styled } from '@mui/system';
-
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { AuthContext, useAuthContext } from "../contexts/authcontext";
@@ -103,7 +102,6 @@ const UpdateProfile = () => {
         navigate(RoutePaths.home);
     }
 
-    
     return (
         <Regdiv>
       <Container component="main">

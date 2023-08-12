@@ -10,18 +10,18 @@ import { useCartContext } from "../contexts/cartcontext";
 import { RoutePaths } from "../utils/enum";
 import Shared from "../utils/shared";
 
-const  Searchbar = () => {
+const Searchbar = () => {
   const classes = headerStyle();
-    const authContext = useAuthContext();
-    const cartContext = useCartContext();
-  const navigate =useNavigate();
+  const authContext = useAuthContext();
+  const cartContext = useCartContext();
+  const navigate = useNavigate();
 
-  
+
   const [query, setquery] = useState("");
   const [bookList, setbookList] = useState([]);
   const [openSearchResult, setOpenSearchResult] = useState(false);
 
-  
+
 
 
   const searchBook = async () => {
@@ -30,44 +30,43 @@ const  Searchbar = () => {
   };
 
   const search = () => {
-    if(query)
-    {
-        document.body.classList.add("search-results-open");
-        searchBook();
-        setOpenSearchResult(true);
+    if (query) {
+      document.body.classList.add("search-results-open");
+      searchBook();
+      setOpenSearchResult(true);
     }
-    else{
-        toast.error("Bad Request!");
+    else {
+      toast.error("Bad Request!");
     }
-    
+
   };
 
-  const cancle=()=>{
+  const cancle = () => {
     setbookList([]);
     setOpenSearchResult(false);
     setquery("");
   }
 
-    const addToCart = (book) => {
-      if (!authContext.user.id) {
-        navigate(RoutePaths.Login);
-        toast.error("Please login before adding books to cart");
-      } else {
-        Shared.addToCart(book, authContext.user.id).then((res) => {
-          if (res.error) {
-            toast.error(res.error);
-          } else {
-            toast.success("Item added in cart");
-            cartContext.updateCart();
-          }
-        });
-      }
-    };
+  const addToCart = (book) => {
+    if (!authContext.user.id) {
+      navigate(RoutePaths.Login);
+      toast.error("Please login before adding books to cart");
+    } else {
+      Shared.addToCart(book, authContext.user.id).then((res) => {
+        if (res.error) {
+          toast.error(res.error);
+        } else {
+          toast.success("Item added in cart");
+          cartContext.updateCart();
+        }
+      });
+    }
+  };
 
   return (
     <div className={classes.headerWrapper}>
       <AppBar className="site-header" id="header" position="static">
-        
+
         <div
           className="search-overlay"
           onClick={() => {
@@ -98,25 +97,25 @@ const  Searchbar = () => {
                             bookList.map((item, i) => {
                               return (
                                 <>
-                                <ListItem key={i}>
-                                  <div className="inner-block">
-                                    <div className="left-col">
-                                      <span className="title">{item.name}</span>
-                                      <p>{item.description}</p>
+                                  <ListItem key={i}>
+                                    <div className="inner-block">
+                                      <div className="left-col">
+                                        <span className="title">{item.name}</span>
+                                        <p>{item.description}</p>
+                                      </div>
+                                      <div className="right-col">
+                                        <span className="price">
+                                          {item.price}
+                                        </span>
+                                        <p>
+                                          <Link onClick={() => addToCart(item)}>
+                                            Add to cart
+                                          </Link>
+                                        </p>
+                                      </div>
                                     </div>
-                                    <div className="right-col">
-                                      <span className="price">
-                                        {item.price}
-                                      </span>
-                                      <p>
-                                      <Link  onClick={() => addToCart(item)}>
-                                        Add to cart
-                                      </Link>
-                                      </p>
-                                    </div>
-                                  </div>
-                                </ListItem>
-                                  <hr/>
+                                  </ListItem>
+                                  <hr />
                                 </>
                               );
                             })}
@@ -128,15 +127,14 @@ const  Searchbar = () => {
                     </>
                   )}
                 </div>
-                
+
                 <Button
                   type="submit"
                   className=" btn"
                   variant="contained"
-                  style={{backgroundColor:"darkblue"}}
+                  style={{ backgroundColor: "darkblue" }}
                   disableElevation
                   onClick={search}
-                  
                 >
                   Search
                 </Button>
@@ -144,13 +142,12 @@ const  Searchbar = () => {
                   type="submit"
                   className=" btn"
                   variant="contained"
-                  style={{backgroundColor:"rgb(204, 5, 5)"}}
+                  style={{ backgroundColor: "rgb(204, 5, 5)" }}
                   disableElevation
                   onClick={cancle}
                 >
                   Clear
                 </Button>
-                
               </div>
             </div>
           </div>

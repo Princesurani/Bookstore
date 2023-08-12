@@ -10,11 +10,6 @@ import ConfirmationDialog from "../utils/confirmDialog";
 import shared from "../utils/shared";
 import { RoutePaths } from "../utils/enum";
 
-
-
-
-
-
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
@@ -23,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
-
     paper: {
         width: '66%',
         marginBottom: theme.spacing(3),
@@ -34,8 +28,6 @@ const useStyles = makeStyles((theme) => ({
     table: {
         minWidth: 750,
     },
-
-
 }));
 
 const defaultFilter = {
@@ -47,12 +39,9 @@ const defaultFilter = {
 
 const Books = () => {
     const navigate = useNavigate();
-
     const classes = useStyles();
     const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
     const [deleteBookId, setDeleteBookId] = useState(null);
-
-
     const [bookResponse, setBookResponse] = useState({
         pageIndex: 0,
         pageSize: 10,
@@ -219,8 +208,6 @@ const Books = () => {
                 </Paper>
             </div>
 
-
-
             <ConfirmationDialog
                 open={deleteConfirmationOpen}
                 onClose={handleDeleteConfirmationClose}
@@ -228,8 +215,6 @@ const Books = () => {
                 title="Delete Book"
                 description={shared.messages.BOOK_DELETE}
             />
-
-
         </div>
     );
 };

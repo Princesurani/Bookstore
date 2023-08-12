@@ -14,7 +14,6 @@ const initialUserValue = {
     password: "",
 };
 
-
 const initialState = {
     setUser: () => { },
     user: initialUserValue,
@@ -24,9 +23,7 @@ const initialState = {
 };
 
 export const AuthContext = createContext(initialState);
-
 export const AuthWrapper = ({ children }) => {
-
 
     const [user, _setUser] = useState(initialUserValue);
     const navigate = useNavigate();
@@ -74,7 +71,6 @@ export const AuthWrapper = ({ children }) => {
         user,
         setUser,
         signOut,
-
     };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

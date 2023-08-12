@@ -11,7 +11,7 @@ import { Pagination } from "@material-ui/lab";
 import Shared from "../utils/shared";
 import { useAuthContext } from "../contexts/authcontext";
 import { toast } from "react-toastify";
-import {  useCartContext } from "../contexts/cartcontext";
+import { useCartContext } from "../contexts/cartcontext";
 
 
 
@@ -196,12 +196,10 @@ const BookGrid = () => {
     };
 
     return (
-
         <div >
             <div className={classes.root}>
                 <Paper className={classes.paper}>
                     <Typography variant="h4">Book-Listing</Typography><hr />
-
                     <GridContainer>
                         <Grid>
                             <div>
@@ -224,7 +222,6 @@ const BookGrid = () => {
                                         }}
                                     >
                                     </TextField>
-
                                     <FormControl className={classes.formControl} >
                                         <InputLabel htmlFor="select">Sort By</InputLabel>
                                         <Select onChange={sortBooks} value={sortBy}>
@@ -252,10 +249,10 @@ const BookGrid = () => {
                                             {book.description.slice(0, 30)}
                                         </BookSub>
                                         <BookSub variant="subtitle1">{book.price} ₹</BookSub>
-                                        <Button 
+                                        <Button
                                             className=" btn"
-                                            variant="contained" 
-                                            style={{ backgroundColor: "darkblue" ,color:"white"}} onClick={() => addBooktoCart(book)}
+                                            variant="contained"
+                                            style={{ backgroundColor: "darkblue", color: "white" }} onClick={() => addBooktoCart(book)}
                                         >
                                             Add to Cart
                                         </Button>
